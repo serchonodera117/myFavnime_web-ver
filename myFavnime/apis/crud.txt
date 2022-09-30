@@ -1,0 +1,107 @@
+ur: https://registrosappinventor.000webhostapp.com/favnime/NombreArchivo.php
+
+<?php
+//header('Content-Type: application/json');
+Header('Access-Control-Allow-Origin: *');
+if($_GET)
+{
+$comando=$_GET['comando'];
+
+
+$servername = "localhost";
+$username = "id17488564_favnime117";
+$password = "j/hq-}BpN6~8!M}2";
+$dbname = "id17488564_favnime";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+die("Connection failed: " . $conn->connect_error);
+}
+                       //Create----------------------------------------------------------------------
+if($comando=='agregar') 
+{
+$nombre=$_GET["nombre"];
+$descripcion=$_GET["descripcion"];
+$precioCosto=$_GET["precioCosto"];
+$precioVenta=$_GET["precioVenta"];
+$cantidad=$_GET["cantidad"];
+$foto=$_GET["foto"];
+
+$sql = "INSERT INTO reactProducto (nombreProducto, descripcionProducto, precioCosto, precioVenta,cantidad,fotografia)
+VALUES ('$nombre', '$descripcion', $precioCosto,$precioVenta,$cantidad,'$foto')";
+
+if ($conn->query($sql) === TRUE) {
+echo '{"mensaje":"Nuevo registro añadido"}';
+} else {
+echo '{"error: "' . $sql . ' ' . $conn->error.'"}';
+}
+
+}
+                  //udate------------------------------------------------------------------------
+if($comando=='actualizar')
+{
+$id=$_GET["id"];    
+$nombre=$_GET["nombre"];
+$descripcion=$_GET["descripcion"];
+$precioCosto=$_GET["precioCosto"];
+$precioVenta=$_GET["precioVenta"];
+$cantidad=$_GET["cantidad"];
+$foto=$_GET["foto"];
+$id=$_GET["id"];
+
+$sql = "UPDATE reactProducto SET nombreProducto='$nombre', 
+                                 descripcionProducto='$descripcion',
+                                 precioCosto=$precioCosto,
+                                  precioVenta=$precioVenta,
+                                  cantidad=$cantidad,
+                                  fotografia='$foto' WHERE idproducto=$id";
+
+if ($conn->query($sql) === TRUE) {
+echo '{"mensaje":"Registro actualizado"}';
+} else {
+echo '{"error: "' . $sql . ' ' . $conn->error.'"}';
+}
+
+
+}
+                   //delete------------------------------------------------------------------------
+if($comando=='eliminar')
+{
+$id=$_GET["id"]; 
+// sql to delete a record
+$sql = "DELETE FROM reactProducto WHERE idproducto=$id";
+
+if ($conn->query($sql) === TRUE) {
+echo '{"mensaje":"Registro eliminado"}';
+} else {
+echo '{"error: "' . $sql . ' ' . $conn->error.'"}';
+}
+
+}
+
+
+
+
+ //resultado de quey y codificacion de un array --------------------------------------------------------------------------
+
+ if ($result->num_rows > 0) {
+// output data of each row
+$registros=array();
+$i=0;
+while($row = $result->fetch_assoc()) {
+//echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+$registros[$i]=$row;
+$i++;
+}
+echo '{"records":'.json_encode($registros).'}';
+} else {
+echo '{"records":[]}';
+} 
+
+
+
+$conn->close();
+}
+?>

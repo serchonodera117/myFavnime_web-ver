@@ -1,0 +1,9 @@
+/* datps generales, es el estándar de una fotografía */
+.imagenPerfil{
+    height: 120px;
+    width: 120px;
+    padding: 3px;
+    border: 2px solid rgb(161, 200, 238);
+    border-radius: 50%;
+    object-fit: cover;
+}

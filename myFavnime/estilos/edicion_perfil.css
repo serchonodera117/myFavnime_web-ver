@@ -1,0 +1,48 @@
+.imagenPerfil{
+    height: 120px;
+    width: 120px;
+    padding: 3px;
+    border: 2px solid rgb(161, 200, 238);
+    border-radius: 50%;
+    object-fit: cover;
+}
+#selectImage{
+    display: none;
+}
+
+/* -------- botón de la imagen */
+#imgButton{
+    background-color: rgb(31, 42, 194);
+    height: 2.3rem;
+    width: 2.3rem;
+    border-radius: 50%;
+    z-index: 10;
+    border: 3px solid rgb(161, 200, 238);
+    left: 27%;
+    top: 12%;
+    transition: 1s;
+    position: absolute;
+}#imgButton:hover{
+    transform: scale(1.1);
+    background-color: rgb(63, 74, 230);
+    cursor: pointer;
+}#img-icon{
+    color:white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25%;
+    margin-bottom: 25%;
+    display:table;
+    transition: 1s;
+}#img-icon:hover{
+    transform: scale(1.1);
+}
+
+/*caja de texto del nombre*/
+.edit-name{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    display:table;
+}
